@@ -11,8 +11,9 @@ import java.util.Scanner;
  * @author WEB1-19
  */
 public class Sergio_Parte {
+
     public static void main(String[] args) {
-         double[] precios = {10.5, 20.0, 5.75, 100.0};
+        double[] precios = {10.5, 20.0, 5.75, 100.0};
         int[] cantidades = {2, 1, 5, 1};
         int[] tipos = {1, 2, 1, 2};
 
@@ -21,9 +22,9 @@ public class Sergio_Parte {
         System.out.println("TOTAL FINAL: " + totalFinal);
 
         confirmarPedido();
-   
-    
+
     }
+
     public static double calcularTotal(double[] precios, int[] cantidades, int[] tipos) {
         double totalFinal = 0;
 
@@ -38,5 +39,14 @@ public class Sergio_Parte {
         }
 
         return totalFinal;
+    }
+
+    public static double calcularIVA(double subtotal, int tipoProducto) {
+        if (tipoProducto == 1) {
+            return subtotal * 0.04; // IVA Superreducido
+        } else if (tipoProducto == 2) {
+            return subtotal * 0.21; // IVA General
+        }
+        return 0;
     }
 }
