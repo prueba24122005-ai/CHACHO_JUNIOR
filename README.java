@@ -49,4 +49,24 @@ public class Sergio_Parte {
         }
         return 0;
     }
+    public static double aplicarDescuento(double precio, int cantidad) {
+        if (cantidad > 3) {
+            return precio - (precio * 0.1);
+        }
+        return precio;
+    }
+
+    // Método que gestiona la confirmación del pedido (interfaz)
+    public static void confirmarPedido() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("¿Confirmar pedido? (s/n)");
+        String respuesta = scanner.nextLine();
+
+        if (respuesta.equalsIgnoreCase("s") || respuesta.equalsIgnoreCase("si")) {
+            System.out.println("Guardando el pedido...");
+        } else {
+            System.out.println("OK. Mensaje recibido, no lo guardaré.");
+        }
+    }
 }
