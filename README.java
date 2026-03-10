@@ -24,12 +24,9 @@ public class Main {
 
         for (int i = 0; i < precios.length; i++) {
             double subtotal = precios[i] * cantidades[i];
-            
-            // Modularización: Extracción de cálculo de IVA
+        
             double impuesto = calcularIVA(subtotal, tipos[i]);
             double subtotalConIva = subtotal + impuesto;
-            
-            // Modularización: Extracción de cálculo de descuento
             double precioFinalItem = calcularDescuento(subtotalConIva, cantidades[i]);
 
             System.out.println("Item " + i + ": " + precioFinalItem);
@@ -57,7 +54,6 @@ public class Main {
 
 
     public static void confirmarPedido() {
-        // Limpieza: El Scanner se gestiona aquí de forma independiente
         try (Scanner sc = new Scanner(System.in)) {
             System.out.println("¿Confirmar pedido? (s/n)");
             String s = sc.nextLine();
