@@ -9,18 +9,11 @@ public class Main {
         double totalFinal = 0;
         for (int i = 0; i < precios.length; i++) {
             double subtotal = precios[i] * cantidades[i];
-            double impuesto = 0;
-
-            if (tipos[i] == 1) {
-                impuesto = subtotal * 0.04;
-            } else if (tipos[i] == 2) {
-                impuesto = subtotal * 0.21;
-            }
+            double impuesto = calcularIVA(subtotal, tipos[i]);
             double resultadoItem = subtotal + impuesto;
 
-            if (cantidades[i] > 3) {
-                resultadoItem = resultadoItem - (resultadoItem * 0.1);
-            }
+            resultadoItem = aplicarDescuento(resultadoItem, cantidades[i]);
+            
             System.out.println("Item " + i + ": " + resultadoItem);
             totalFinal += resultadoItem;
         }
@@ -32,5 +25,21 @@ public class Main {
         if (respuesta.equals("s")) {
             System.out.println("Guardando...");
         }
+    }
+
+    public static double calcularIVA(double subtotal, int tipo) {
+        if (tipo == 1) {
+            return subtotal * 0.04;
+        } else if (tipo == 2) {
+            return subtotal * 0.21;
+        }
+        return 0;
+    }
+
+    public static double aplicarDescuento(double totalItem, int cantidad) {
+        if (cantidad > 3) {
+            return totalItem * 0.9;
+        }
+        return totalItem;
     }
 }
