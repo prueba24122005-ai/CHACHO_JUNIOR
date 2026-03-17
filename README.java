@@ -38,12 +38,15 @@ public class Main {
 
         for (int i = 0; i < precios.length; i++) {
             double subtotal = precios[i] * cantidades[i];
+
             double iva = calcularIVA(subtotal, tipos[i]);
+
             double total = subtotal + iva;
 
             total = aplicarDescuento(total, cantidades[i]);
 
             System.out.println("Item " + i + ": " + total);
+
             totalFinal += total;
         }
 
@@ -52,7 +55,25 @@ public class Main {
         confirmarPedido();
     }
 }
-            System.out.println("Guardando...");
-        }
-    }
-}
+
+/*
+CAMBIOS REALIZADOS:
+
+1. Refactorización de nombres:
+- p → precios
+- c → cantidades
+- t → tipos
+- tt → totalFinal
+
+2. Modularización:
+- Se creó el método calcularIVA() para separar el cálculo del impuesto
+- Se creó el método aplicarDescuento() para gestionar descuentos
+
+3. Separación de responsabilidades:
+- Se creó el método confirmarPedido() para aislar la interacción con el usuario (Scanner)
+- El método main ahora solo gestiona el flujo principal del programa
+
+4. Mejora de legibilidad:
+- Variables más claras (subtotal, iva, total)
+- Código más organizado y reutilizable
+*/
