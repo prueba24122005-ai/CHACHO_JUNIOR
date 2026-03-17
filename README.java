@@ -18,6 +18,16 @@ public class Main {
         return total;
     }
 
+    public static void confirmarPedido() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Confirmar pedido? (s/n)");
+        String s = sc.nextLine();
+
+        if (s.equals("s")) {
+            System.out.println("Guardando...");
+        }
+    }
+
     public static void main(String[] args) {
 
         double[] precios = {10.5, 20.0, 5.75, 100.0};
@@ -39,13 +49,7 @@ public class Main {
 
         System.out.println("TOTAL FINAL: " + totalFinal);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Confirmar pedido? (s/n)");
-        String s = sc.nextLine();
-
-        if (s.equals("s")) {
-            System.out.println("Guardando...");
-        }
+        confirmarPedido();
     }
 }
             System.out.println("Guardando...");
