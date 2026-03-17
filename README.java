@@ -1,43 +1,39 @@
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double[] precios = {10.5, 20.0, 5.75, 100.0};
-        int[] cantidades = {2, 1, 5, 1};
-        int[] tipos = {1, 2, 1, 2}
-        
-        double totalFinal = 0;
+        // Datos con nombres para mejor comprension
+        String[] producto = {"Manzanas", "Auriculares", "Pan", "Tablet"};
+        double[] precio = {10.5, 20.0, 5.75, 100.0};
+        int[] cantidad = {2, 1, 5, 1};
+        int[] tipo = {1, 2, 1, 2}; // 1: Alimento, 2: Electronica
+        double total = 0;
 
-        for (int i = 0; i < precios.length; i++) {
-            double sub = precios[i] * cantidades[i];
-            double imp = 0;
+        System.out.println("\n--- FACTURA ---");
+        for (int i = 0; i < precio.length; i++) {
+            double subtotal = precio[i] * cantidad[i];
+            double impuesto = (tipo[i] == 1) ? subtotal * 0.04 : subtotal * 0.21;
+            double totalItem = subtotal + impuesto;
 
-            if (tipos[i] == 1) {
-                imp = sub * 0.04; // IVA Superreducido
-            } else if (tipos[i] == 2) {
-                imp = sub * 0.21;// IVA General
+            // Descuento si compra mas de 3
+            if (cantidad[i] > 3) {
+                totalItem = totalItem * 0.9; // 10% descuento
+                System.out.printf("%s: %.2f (con descuento incluido)%n", producto[i], totalItem);
+            } else {
+                System.out.printf("%s: %.2f%n", producto[i], totalItem);
             }
-       
-            double res = sub + imp;
             
-            // Descuento si la cantidad es grande
-            if (cantidades[i] > 3) {
-                res = res - (res * 0.1);
-            }
-
-            System.out.println("Item " + i + ": " + res);
-            tt += res;
+            total += totalItem;
         }
 
-        System.out.println("TOTAL FINAL: " + tt);
-       
-        System.out.println("¿Confirmar pedido? (s/n)");
-        String s = sc.nextLine();
-        if (s.equals("s")) {
-            System.out.println("Guardando...");
+        System.out.printf("TOTAL: %.2f€%n", total);
+        
+        // Confirmacion simple
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Confirmar? (s/n): ");
+        if (sc.nextLine().equals("s")) {
+            System.out.println("Guardado");
         }
+        sc.close();
     }
-
 }
